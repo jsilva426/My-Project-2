@@ -73,22 +73,33 @@ void rootNode(vector<struct node> &v1, string rawEvent)
 	v1.push_back(root);
 }
 
-void insert(vector<struct node> &tree, string rawEvent)
-{
-	for (int i = 0; i < tree.size(); i++)
+void insert(vector<struct node> &tree, string rawEvent) // cannot seem to understand how once 2 nodes are created, how when a new node
+{							// is created how the program fills the null node, how is this identified and selected
+	for (int i = 0; i < tree.size(); i++)		//with an insert function?
 	{
-		if (rawEvent < tree[0].rEvent)
+		if (rawEvent < tree[i].rEvent)
 		{
+			if(tree[i].LeftInd==-1)
+			{
+				
 			struct node a = { hashID(tree[i].ID,rawEvent), tree[i].ID, rawEvent, -1, -1 };
 			tree.push_back(a); tree[i].leftInd = i;
+			struct node c= {hashID(tree[i].ID,NULL),tree[i].ID,NULL,-1,-1};
+			tree.push_back(c);
+			}
 
 		}
-		if (rawEvent>tree[0].rEvent)
+		if (rawEvent>tree[i].rEvent)
 		{
+			if(tree[i].rightInd==-1)
+			{
 
 
 			struct node  b = { hashID(tree[i].ID,rawEvent), tree[i].ID, rawEvent, -1, -1 };
 			tree.push_back(b); tree[i].rightInd = i;
+			struct node d= {hashID(tree[i].ID,NULL),tree[i].ID,NULL,-1,-1};
+			tree.push_back(d);
+			}
 
 		}
 	}
